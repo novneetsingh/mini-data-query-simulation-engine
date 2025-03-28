@@ -15,6 +15,10 @@ const PORT = 5000;
 // Route setup
 app.use("/api/v1/", queryRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the Query Processing API!");
+});
+
 // Activate server
 app.listen(PORT, () => {
   console.log("Server is running on port", PORT); // Log server activation
