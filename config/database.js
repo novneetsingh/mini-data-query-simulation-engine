@@ -21,6 +21,20 @@ const salesData = [
     totalProducts: 220,
     region: "East",
   },
+  {
+    quarter: "Q4 2024",
+    totalRevenue: 300000,
+    averageProductSale: 1500,
+    totalProducts: 200,
+    region: "West",
+  },
+  {
+    quarter: "Q1 2025",
+    totalRevenue: 350000,
+    averageProductSale: 1750,
+    totalProducts: 250,
+    region: "North",
+  },
 ];
 
 // Customer satisfaction data
@@ -39,6 +53,27 @@ const customerData = [
     segment: "SMB",
     totalSpend: 45000,
   },
+  {
+    id: 3,
+    name: "Retail Solutions",
+    satisfactionScore: 78,
+    segment: "Retail",
+    totalSpend: 80000,
+  },
+  {
+    id: 4,
+    name: "E-commerce Giants",
+    satisfactionScore: 95,
+    segment: "E-commerce",
+    totalSpend: 120000,
+  },
+  {
+    id: 5,
+    name: "Healthcare Partners",
+    satisfactionScore: 88,
+    segment: "Healthcare",
+    totalSpend: 60000,
+  },
 ];
 
 // Function to get total revenue
@@ -56,6 +91,11 @@ exports.getAverageCustomerSatisfaction = () => {
 };
 
 // Function to search sales by quarter
-exports.findSalesByQuarter = (quarterToFind) => {
-  return salesData.find((sale) => sale.quarter === quarterToFind);
+exports.findSalesByQuarter = (quarter, year) => {
+  const quarterString = `Q${quarter} ${year}`;
+  return (
+    salesData.find((sale) => sale.quarter === quarterString) || {
+      message: "No data found for specified quarter",
+    }
+  );
 };

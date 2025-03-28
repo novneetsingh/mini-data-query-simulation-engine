@@ -29,11 +29,25 @@ exports.processNaturalLanguageQuery = (query) => {
     };
   }
 
-  if (lowerQuery.includes("sales by quarter")) {
-    const quarter = lowerQuery.match(/quarter (\d+)/i)[1];
+  if (lowerQuery.includes("sales for")) {
+    // Match both "Q1" and "quarter 1" patterns, and capture year if present
+    const quarterMatch = lowerQuery.match(
+      /(?:q|quarter)\s?(\d+)(?:\s+(\d{4}))?/i
+    );
+
+    if (!quarterMatch) {
+      return {
+        translatedQuery: "INVALID_QUARTER",
+        results: { message: "Quarter number not specified in query" },
+      };
+    }
+
+    const quarter = quarterMatch[1];
+    const year = quarterMatch[2] || new Date().getFullYear().toString(); // Use current year if not specified
+
     return {
-      translatedQuery: `SELECT * FROM salesData WHERE quarter = ${quarter}`,
-      results: findSalesByQuarter(quarter),
+      translatedQuery: `SELECT * FROM salesData WHERE quarter = ${quarter} AND year = ${year}`,
+      results: findSalesByQuarter(quarter, year),
     };
   }
 

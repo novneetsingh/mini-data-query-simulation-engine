@@ -57,7 +57,7 @@ mini-data-query-simulation-engine/
   "query": "what is the total revenue",
   "translatedQuery": "SELECT SUM(totalRevenue) FROM salesData",
   "results": {
-    "totalRevenue": 850000,
+    "totalRevenue": 1500000,
     "currency": "INR"
   }
 }
@@ -123,7 +123,7 @@ POST /api/v1/query
   "query": "what is the total revenue",
   "translatedQuery": "SELECT SUM(totalRevenue) FROM salesData",
   "results": {
-    "totalRevenue": 850000,
+    "totalRevenue": 1500000,
     "currency": "INR"
   }
 }
@@ -144,7 +144,7 @@ POST /api/v1/query
   "query": "show customer satisfaction",
   "translatedQuery": "SELECT AVG(satisfactionScore) FROM customerData",
   "results": {
-    "averageSatisfaction": "88.50",
+    "averageSatisfaction": "87.60",
     "scale": "0-100"
   }
 }
